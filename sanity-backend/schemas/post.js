@@ -10,7 +10,7 @@ export default {
 		},
 		{
 			name: 'video',
-			title: 'Video',
+			title: 'Videos',
 			type: 'string',
 			options: {
 				hotspot: true,
