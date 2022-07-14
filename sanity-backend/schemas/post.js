@@ -12,9 +12,6 @@ export default {
 			name: 'video',
 			title: 'Videos',
 			type: 'string',
-			options: {
-				hotspot: true,
-			},
 		},
 		{
 			name: 'userId',
