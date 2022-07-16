@@ -10,8 +10,11 @@ export default {
 		},
 		{
 			name: 'video',
-			title: 'Videos',
-			type: 'string',
+			title: 'Video',
+			type: 'file',
+			options: {
+				hotspot: true,
+			},
 		},
 		{
 			name: 'userId',
