@@ -1,6 +1,11 @@
 export interface Video {
 	caption: string
-	video: string
+	video: {
+		asset: {
+			_id: string
+			url: string
+		}
+	}
 	_id: string
 	postedBy: {
 		_id: string
