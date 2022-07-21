@@ -7,6 +7,7 @@ import {BsFillPlayFill, BsFillPauseFill} from 'react-icons/bs'
 import {GoVerified} from 'react-icons/go'
 import {BsPlay} from 'react-icons/bs'
 import {Video} from '../types'
+import {isDataView} from 'util/types'
 
 interface IProps {
 	post: Video
@@ -27,6 +28,10 @@ const VideoCard: NextPage<IProps> = ({post}) => {
 			setPlaying(true)
 		}
 	}
+
+	useEffect(() => {
+		if (videoRef?.current) videoRef.current.muted = isVideoMuted
+	}, [isVideoMuted])
 
 	return (
 		<div className="flex flex-col border-b-2 border-gray-200 pb-6">
