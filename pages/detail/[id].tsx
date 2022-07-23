@@ -22,8 +22,17 @@ const Detail = ({postDetails}: IProps) => {
 	const [playing, setPlaying] = useState(false)
 	const [isVideoMuted, setIsVideoMuted] = useState(false)
 	const videoRef = useRef<HTMLVideoElement>(null)
-	const {userProfile} = useAuthStore()
+	const {userProfile}: any = useAuthStore()
+	const [comment, setComment] = useState('')
+	const [isPosting, setIsPosting] = useState(false)
 	const router = useRouter()
+
+	const handleLike = async (like: boolean) => {
+		if (userProfile) {
+			const {data} = await axios.put(`${BASE_URL}/api/like`, {userId: userProfile._id, postId: post._id, like})
+			setPost({...post, likes: data.likes})
+		}
+	}
 
 	const onVideoClick = () => {
 		if (playing) {
@@ -32,6 +41,17 @@ const Detail = ({postDetails}: IProps) => {
 		} else {
 			videoRef?.current?.play()
 			setPlaying(true)
+		}
+	}
+
+	const addComment = async (e) => {
+		e.prevent.default()
+		if (userProfile && comment) {
+			setIsPosting(true)
+			respone = await axios.put(`${BASE_URL}/api/post/post_id`, {
+				userId: userProfile._id,
+				comment,
+			})
 		}
 	}
 
@@ -104,8 +124,8 @@ const Detail = ({postDetails}: IProps) => {
 						</div>
 					</div>
 					<p className="px-10  text-lg text-gray-600">{post.caption}</p>
-					<div className="mt-10 px-10">{userProfile && <LikeButton />}</div>
-					<Comments />
+					<div className="mt-10 px-10">{userProfile && <LikeButton handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} likes={post.likes} />}</div>
+					<Comments comment={comment} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment} comments={post.comments} />
 				</div>
 			</div>
 		</div>
