@@ -12,11 +12,11 @@ const NoResults = ({text}: IProps) => {
 			<p className="text-8xl">
 				{text.length === 0 && (
 					<>
-						<MdOutlineVideocamOff />
-						<p>No results..</p>
+						<MdOutlineVideocamOff className="text-md" />
+						<p className="text-2xl text-center">No results..</p>
 					</>
 				)}
-				{text === 'No Comments yet.. Be the first one!' && (
+				{text.length >= 1 && (
 					<>
 						<BiCommentX /> <p className="text-2xl text-center">{text}</p>
 					</>
