@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import Sidebar from '../components/Sidebar'
 import NavBar from '../components/Navbar'
 import {GoogleOAuthProvider} from '@react-oauth/google'
+import Head from 'next/head'
 
 const MyApp = ({Component, pageProps}: AppProps) => {
 	const [isSSR, setisSSR] = useState(true)
